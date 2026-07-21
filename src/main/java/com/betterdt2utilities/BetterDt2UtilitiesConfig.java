@@ -183,7 +183,7 @@ public interface BetterDt2UtilitiesConfig extends Config
 	// Vardorvis heads
 	@ConfigSection(
 		name = "Vardorvis heads",
-		description = "Highlight Vardorvis' heads by attack style (mage/range)",
+		description = "Highlight Vardorvis' heads, coloured by attack style (magic/ranged)",
 		position = 2,
 		closedByDefault = true
 	)
@@ -191,12 +191,12 @@ public interface BetterDt2UtilitiesConfig extends Config
 
 	@ConfigItem(
 		position = 0,
-		keyName = "highlightMageHead",
-		name = "Magic head",
-		description = "Highlight the head throwing a magic attack",
+		keyName = "headHighlight",
+		name = "Head highlight",
+		description = "Highlight style for the attacking heads; colour is set per attack style below",
 		section = headsSection
 	)
-	default HighlightStyle highlightMageHead()
+	default HighlightStyle headHighlight()
 	{
 		return HighlightStyle.NONE;
 	}
@@ -237,18 +237,6 @@ public interface BetterDt2UtilitiesConfig extends Config
 	default ProjectileStyle vardorvisMageProjectile()
 	{
 		return ProjectileStyle.Vardorvis;
-	}
-
-	@ConfigItem(
-		position = 4,
-		keyName = "highlightRangeHead",
-		name = "Ranged head",
-		description = "Highlight the head throwing a ranged attack",
-		section = headsSection
-	)
-	default HighlightStyle highlightRangeHead()
-	{
-		return HighlightStyle.NONE;
 	}
 
 	@Alpha
@@ -384,11 +372,94 @@ public interface BetterDt2UtilitiesConfig extends Config
 		return new Color(255, 255, 255, 90);
 	}
 
+	// Vardorvis pillars
+	@ConfigSection(
+		name = "Vardorvis pillars",
+		description = "Hide and highlight the pillars in Vardorvis' arena",
+		position = 4,
+		closedByDefault = true
+	)
+	String pillarsSection = "pillarsSection";
+
+	@ConfigItem(
+		position = 0,
+		keyName = "hidePillars",
+		name = "Hide pillars",
+		description = "Remove the arena pillars so you can click through them",
+		section = pillarsSection
+	)
+	default boolean hidePillars()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 1,
+		keyName = "pillarHighlight",
+		name = "Pillar highlight",
+		description = "Highlight style for the arena pillars (hull and outline only draw while a pillar is shown)",
+		section = pillarsSection
+	)
+	default PillarHighlightStyle pillarHighlight()
+	{
+		return PillarHighlightStyle.NONE;
+	}
+
+	@Alpha
+	@ConfigItem(
+		position = 2,
+		keyName = "pillarBorderColor",
+		name = "Pillar border color",
+		description = "The outline color of the pillar highlight",
+		section = pillarsSection
+	)
+	default Color pillarBorderColor()
+	{
+		return new Color(0, 0, 0, 255);
+	}
+
+	@Alpha
+	@ConfigItem(
+		position = 3,
+		keyName = "pillarFillColor",
+		name = "Pillar fill color",
+		description = "The fill color of the pillar highlight; set alpha to 0 for outline only",
+		section = pillarsSection
+	)
+	default Color pillarFillColor()
+	{
+		return new Color(255, 255, 255, 0x32);
+	}
+
+	@ConfigItem(
+		position = 4,
+		keyName = "pillarHighlightWidth",
+		name = "Pillar highlight width",
+		description = "Width of the pillar highlight border",
+		section = pillarsSection
+	)
+	default double pillarHighlightWidth()
+	{
+		return 2;
+	}
+
+	@ConfigItem(
+		position = 5,
+		keyName = "pillarOutlineFeather",
+		name = "Pillar outline feather",
+		description = "Softness of the edge on the pillar outline highlight (Outline mode only)",
+		section = pillarsSection
+	)
+	default int pillarOutlineFeather()
+	{
+		return 2;
+	}
+
 	// Whisperer
 	@ConfigSection(
 		name = "Whisperer",
 		description = "Swap the Whisperer's magic and ranged projectiles",
-		position = 4,
+		position = 5,
 		closedByDefault = true
 	)
 	String whispererSection = "whispererSection";

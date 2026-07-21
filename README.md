@@ -8,8 +8,12 @@ Quality-of-life tools for the Desert Treasure 2 bosses, focused on Vardorvis. Ru
 - Highlight axes as hull, tile, true tile, or outline, with separate border and fill colours; hidden axes stay unmarked
 
 ## Vardorvis heads
-- Highlight the head throwing a mage attack and the head throwing a ranged attack, each with its own style and colours
-- Handles the sub-50% paired heads, so each head shows the correct style
+- Highlight the attacking heads with one style, coloured by attack type (magic and ranged)
+- Handles the sub-50% paired heads, so each head shows the correct colour
+
+## Vardorvis arena pillars
+- Hide the arena pillars so you can click through them
+- Highlight the pillars as hull, tile, or outline, with separate border and fill colours
 
 ## Spore captcha
 - Highlights the spore under your cursor during the tendril quick-time event, with an optional outline around every spore

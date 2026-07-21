@@ -46,7 +46,8 @@ public class HeadOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (config.highlightMageHead() == HighlightStyle.NONE && config.highlightRangeHead() == HighlightStyle.NONE)
+		HighlightStyle renderType = config.headHighlight();
+		if (renderType == HighlightStyle.NONE)
 		{
 			return null;
 		}
@@ -68,24 +69,17 @@ public class HeadOverlay extends Overlay
 				continue;
 			}
 
-			HighlightStyle renderType;
 			Color color;
 			Color fillColor;
 			if (style == HeadTracker.HeadAttackStyle.MAGE)
 			{
-				renderType = config.highlightMageHead();
 				color = config.mageHeadColor();
 				fillColor = config.mageHeadFillColor();
 			}
 			else
 			{
-				renderType = config.highlightRangeHead();
 				color = config.rangeHeadColor();
 				fillColor = config.rangeHeadFillColor();
-			}
-			if (renderType == HighlightStyle.NONE)
-			{
-				continue;
 			}
 			switch (renderType)
 			{
