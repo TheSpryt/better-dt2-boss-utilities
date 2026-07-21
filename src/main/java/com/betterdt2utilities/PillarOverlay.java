@@ -67,14 +67,9 @@ public class PillarOverlay extends Overlay
 			return null;
 		}
 
-		// A removed (hidden) pillar keeps its model and location, so its hull and
-		// outline would still draw. Skip them explicitly so hidden pillars show
-		// nothing for these styles rather than a tile-marker fallback.
-		if (config.hidePillars())
-		{
-			return null;
-		}
-
+		// A hidden pillar's object is removed from the scene but keeps its model
+		// and location, so hull and outline still draw on it. The chosen style is
+		// honoured whether the pillar is shown or hidden.
 		for (GameObject pillar : manager.getPillarObjects())
 		{
 			if (pillar == null)

@@ -397,7 +397,7 @@ public interface BetterDt2UtilitiesConfig extends Config
 		position = 1,
 		keyName = "pillarHighlight",
 		name = "Pillar highlight",
-		description = "Highlight style for the arena pillars (hull and outline only draw while a pillar is shown)",
+		description = "Highlight style for the arena pillars, applied whether they are shown or hidden",
 		section = pillarsSection
 	)
 	default PillarHighlightStyle pillarHighlight()
