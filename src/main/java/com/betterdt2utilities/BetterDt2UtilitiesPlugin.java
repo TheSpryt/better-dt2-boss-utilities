@@ -51,6 +51,42 @@ public class BetterDt2UtilitiesPlugin extends Plugin
 	@Inject
 	private PillarOverlay pillarOverlay;
 
+	@Inject
+	private WhispererSeedsManager whispererSeedsManager;
+
+	@Inject
+	private WhispererSeedsOverlay whispererSeedsOverlay;
+
+	@Inject
+	private SoulManager soulManager;
+
+	@Inject
+	private SoulOverlay soulOverlay;
+
+	@Inject
+	private TentacleManager tentacleManager;
+
+	@Inject
+	private TentacleOverlay tentacleOverlay;
+
+	@Inject
+	private LWalkOverlay lWalkOverlay;
+
+	@Inject
+	private BindRadiusManager bindRadiusManager;
+
+	@Inject
+	private BindRadiusOverlay bindRadiusOverlay;
+
+	@Inject
+	private WhispererPillarManager whispererPillarManager;
+
+	@Inject
+	private WhispererPillarOverlay whispererPillarOverlay;
+
+	@Inject
+	private WhispererEnrageTracker whispererEnrageTracker;
+
 	@Override
 	protected void startUp()
 	{
@@ -58,12 +94,23 @@ public class BetterDt2UtilitiesPlugin extends Plugin
 		eventBus.register(headTracker);
 		eventBus.register(projectileSwapper);
 		eventBus.register(pillarManager);
+		eventBus.register(whispererSeedsManager);
+		eventBus.register(soulManager);
+		eventBus.register(whispererPillarManager);
+		eventBus.register(whispererEnrageTracker);
 		axeHider.startUp();
 		pillarManager.startUp();
+		soulManager.startUp();
 		overlayManager.add(axeOverlay);
 		overlayManager.add(headOverlay);
 		overlayManager.add(captchaOverlay);
 		overlayManager.add(pillarOverlay);
+		overlayManager.add(whispererSeedsOverlay);
+		overlayManager.add(soulOverlay);
+		overlayManager.add(tentacleOverlay);
+		overlayManager.add(lWalkOverlay);
+		overlayManager.add(bindRadiusOverlay);
+		overlayManager.add(whispererPillarOverlay);
 	}
 
 	@Override
@@ -71,14 +118,25 @@ public class BetterDt2UtilitiesPlugin extends Plugin
 	{
 		axeHider.shutDown();
 		pillarManager.shutDown();
+		soulManager.shutDown();
 		eventBus.unregister(axeHider);
 		eventBus.unregister(headTracker);
 		eventBus.unregister(projectileSwapper);
 		eventBus.unregister(pillarManager);
+		eventBus.unregister(whispererSeedsManager);
+		eventBus.unregister(soulManager);
+		eventBus.unregister(whispererPillarManager);
+		eventBus.unregister(whispererEnrageTracker);
 		overlayManager.remove(axeOverlay);
 		overlayManager.remove(headOverlay);
 		overlayManager.remove(captchaOverlay);
 		overlayManager.remove(pillarOverlay);
+		overlayManager.remove(whispererSeedsOverlay);
+		overlayManager.remove(soulOverlay);
+		overlayManager.remove(tentacleOverlay);
+		overlayManager.remove(lWalkOverlay);
+		overlayManager.remove(bindRadiusOverlay);
+		overlayManager.remove(whispererPillarOverlay);
 	}
 
 	@Provides

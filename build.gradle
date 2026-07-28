@@ -30,3 +30,9 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 	options.release.set(11)
 }
+
+task runClient(type: JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.betterdt2utilities.BetterDt2UtilitiesPluginTest'
+    jvmArgs '-ea'
+}
