@@ -46,8 +46,8 @@ public class PillarOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		PillarHighlightStyle style = config.pillarHighlight();
-		if (style == PillarHighlightStyle.NONE)
+		HighlightStyle style = config.pillarHighlight();
+		if (style == HighlightStyle.NONE)
 		{
 			return null;
 		}
@@ -57,8 +57,9 @@ public class PillarOverlay extends Overlay
 		Stroke stroke = new BasicStroke((float) config.pillarHighlightWidth());
 
 		// Tile markers come from the stored locations, so they draw whether the
-		// pillars are shown or hidden.
-		if (style == PillarHighlightStyle.TILE)
+		// pillars are shown or hidden. A pillar is stationary, so its true tile is
+		// simply its tile - TRUE_TILE draws the same markers as TILE.
+		if (style == HighlightStyle.TILE || style == HighlightStyle.TRUE_TILE)
 		{
 			for (WorldPoint wp : manager.getPillarTiles())
 			{
@@ -76,7 +77,7 @@ public class PillarOverlay extends Overlay
 			{
 				continue;
 			}
-			if (style == PillarHighlightStyle.HULL)
+			if (style == HighlightStyle.HULL)
 			{
 				Shape hull = pillar.getConvexHull();
 				if (hull != null)
@@ -84,7 +85,7 @@ public class PillarOverlay extends Overlay
 					OverlayUtil.renderPolygon(graphics, hull, color, fill, stroke);
 				}
 			}
-			else if (style == PillarHighlightStyle.OUTLINE)
+			else if (style == HighlightStyle.OUTLINE)
 			{
 				modelOutlineRenderer.drawOutline(pillar, (int) config.pillarHighlightWidth(), color, config.pillarOutlineFeather());
 			}

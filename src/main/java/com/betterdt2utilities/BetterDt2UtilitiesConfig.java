@@ -400,9 +400,9 @@ public interface BetterDt2UtilitiesConfig extends Config
 		description = "Highlight style for the arena pillars, applied whether they are shown or hidden",
 		section = pillarsSection
 	)
-	default PillarHighlightStyle pillarHighlight()
+	default HighlightStyle pillarHighlight()
 	{
-		return PillarHighlightStyle.NONE;
+		return HighlightStyle.NONE;
 	}
 
 	@Alpha

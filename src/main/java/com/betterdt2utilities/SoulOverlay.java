@@ -6,20 +6,15 @@
  */
 package com.betterdt2utilities;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Shape;
-import java.awt.Stroke;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.ui.overlay.outline.ModelOutlineRenderer;
 
 public class SoulOverlay extends Overlay
@@ -49,7 +44,7 @@ public class SoulOverlay extends Overlay
 			return null;
 		}
 
-		Stroke stroke = new BasicStroke((float) config.soulsHighlightWidth());
+		float width = (float) config.soulsHighlightWidth();
 		for (NPC npc : client.getNpcs())
 		{
 			if (!manager.isSoul(npc) || manager.isHidden(npc))
@@ -63,27 +58,7 @@ public class SoulOverlay extends Overlay
 			}
 			Color color = colorFor(type);
 			Color fill = new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() / 4);
-			switch (style)
-			{
-				case HULL:
-				case TRUE_TILE:
-					Shape hull = npc.getConvexHull();
-					if (hull != null)
-					{
-						OverlayUtil.renderPolygon(graphics, hull, color, fill, stroke);
-					}
-					break;
-				case TILE:
-					Polygon poly = npc.getCanvasTilePoly();
-					if (poly != null)
-					{
-						OverlayUtil.renderPolygon(graphics, poly, color, fill, stroke);
-					}
-					break;
-				case OUTLINE:
-					modelOutlineRenderer.drawOutline(npc, (int) config.soulsHighlightWidth(), color, 0);
-					break;
-			}
+			Highlights.npc(client, graphics, npc, style, color, fill, width, modelOutlineRenderer);
 		}
 		return null;
 	}
